@@ -1,0 +1,15 @@
+services:
+  - type: worker
+    name: number-scanner-bot
+    env: python
+    region: singapore
+    buildCommand: |
+      apt-get update
+      apt-get install -y tesseract-ocr
+      pip install -r requirements.txt
+      pip install pytesseract
+    startCommand: python bot.py
+    envVars:
+      - key: BOT_TOKEN
+        sync: false
+    autoDeploy: true
